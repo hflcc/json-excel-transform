@@ -1,0 +1,16 @@
+{
+  "name": "checkout-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "jsonToExcel": "node ./src/transJsonToExcel.js",
+    "excelToJson": "node ./src/transExcelToJson.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
