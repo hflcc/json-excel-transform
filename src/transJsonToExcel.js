@@ -4,6 +4,7 @@ const path = require('path')
 
 const jsonFoldersPath = path.join(__dirname, '../json/')
 const jsonFiles = fs.readdirSync(jsonFoldersPath, {encoding: 'utf-8'})
+const distDir = path.join(__dirname, '../dist')
 
 jsonFiles.forEach(jsonFileName => {
     const filePath = path.join(__dirname, '../json/' + jsonFileName)
@@ -35,7 +36,11 @@ jsonFiles.forEach(jsonFileName => {
 
 
     // 将工作簿写入 Excel 文件
-    const excelFileName = path.join(__dirname, `../dist/${jsonFileName.split('.')[0]}.xlsx`);
+    const excelFileName = `${distDir}/${jsonFileName.split('.')[0]}.xlsx`;
+
+    if (!fs.existsSync(distDir)) {
+        fs.mkdirSync(distDir, { recursive: true });
+    }
 
     XLSX.writeFile(workbook, excelFileName, { bookType: 'xlsx', type: 'file' });
 })
